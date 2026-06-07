@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Limit Input</title>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f4f4;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .container{
+      width:400px;
+      background:white;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+      margin-bottom:15px;
+      text-align:center;
+    }
+
+    textarea{
+      width:100%;
+      height:120px;
+      padding:10px;
+      resize:none;
+      font-size:16px;
+      border:2px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      box-sizing:border-box;
+    }
+
+    .warning{
+      border-color:orange;
+    }
+
+    .danger{
+      border-color:red;
+    }
+
+    .bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+    }
+
+    #charCount{
+      font-size:14px;
+      color:gray;
+    }
+
+    .warning-text{
+      color:orange !important;
+    }
+
+    .danger-text{
+      color:red !important;
+    }
+
+    button{
+      padding:8px 16px;
+      border:none;
+      background:#007bff;
+      color:white;
+      border-radius:5px;
+      cursor:pointer;
+    }
+
+    button:disabled{
+      background:gray;
+      cursor:not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Post Something</h2>
+
+  <textarea 
+    id="textInput"
+    placeholder="Write something..."
+  ></textarea>
+
+  <div class="bottom">
+    <span id="charCount">200 characters remaining</span>
+    <button id="submitBtn" disabled>
+      Submit
+    </button>
+  </div>
+</div>
+
+<script>
+  const textarea = document.getElementById("textInput");
+  const charCount = document.getElementById("charCount");
+  const submitBtn = document.getElementById("submitBtn");
+
+  const MAX_LIMIT = 200;
+
+  textarea.addEventListener("input", () => {
+
+    // Trim pasted large text
+    if(textarea.value.length > MAX_LIMIT){
+      textarea.value = textarea.value.substring(0, MAX_LIMIT);
+    }
+
+    const currentLength = textarea.value.length;
+    const remaining = MAX_LIMIT - currentLength;
+
+    charCount.innerText = `${remaining} characters remaining`;
+
+    // Remove previous styles
+    textarea.classList.remove("warning", "danger");
+    charCount.classList.remove("warning-text", "danger-text");
+
+    // Warning at 80%
+    if(currentLength >= 160 && currentLength < 190){
+      textarea.classList.add("warning");
+      charCount.classList.add("warning-text");
+    }
+
+    // Danger at 95%
+    if(currentLength >= 190){
+      textarea.classList.add("danger");
+      charCount.classList.add("danger-text");
+    }
+
+    // Disable button if empty
+    submitBtn.disabled = currentLength === 0;
+  });
+
+  submitBtn.addEventListener("click", () => {
+
+    const text = textarea.value.trim();
+
+    if(text === ""){
+      alert("Input cannot be empty");
+      return;
+    }
+
+    alert("Submitted Successfully!");
+
+    textarea.value = "";
+    charCount.innerText = "200 characters remaining";
+
+    textarea.classList.remove("warning", "danger");
+    charCount.classList.remove("warning-text", "danger-text");
+
+    submitBtn.disabled = true;
+  });
+</script>
+
+</body>
+</html>

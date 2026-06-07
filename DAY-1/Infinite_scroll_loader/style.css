@@ -1,0 +1,73 @@
+body {
+  font-family: Arial;
+  background: #f2f2f2;
+  margin: 0;
+}
+
+.feed {
+  width: 420px;
+  margin: 40px auto;
+}
+
+/* Card layout */
+.card {
+  display: flex;
+  gap: 12px;
+  padding: 15px;
+  background: white;
+  margin-bottom: 12px;
+  border-radius: 10px;
+}
+
+/* Avatar placeholder */
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+/* Text lines */
+.content {
+  flex: 1;
+}
+
+.line {
+  height: 12px;
+  background: #ddd;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
+
+.line.short {
+  width: 70%;
+}
+
+/* Skeleton shimmer animation */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #e0e0e0;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  animation: loading 1.2s infinite;
+}
+
+@keyframes loading {
+  100% {
+    transform: translateX(400px);
+  }
+}
