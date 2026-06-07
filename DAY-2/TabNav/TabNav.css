@@ -1,0 +1,126 @@
+.tab-wrap { max-width: 600px; margin: 0 auto; }
+
+.tab-main-title { font-size: 28px; font-family: var(--font-mono); font-weight: 600; margin-bottom: 24px; }
+
+.tab-bar {
+  display: flex;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+
+.tab-btn.active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.tab-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  animation: tabIn 0.2s ease;
+}
+
+@keyframes tabIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-panel-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+.tab-panel-body { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 24px; }
+
+.tab-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.tab-stat {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.tab-stat-value { font-size: 26px; font-weight: 700; font-family: var(--font-mono); color: var(--accent); }
+.tab-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.tab-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tab-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-item-row:last-child { border-bottom: none; }
+
+.tab-item-label { color: var(--muted); font-size: 14px; }
+.tab-item-value { font-size: 14px; font-weight: 500; }
+
+.tab-toggles { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+
+.tab-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-toggle-row:last-child { border-bottom: none; }
+.tab-toggle-label { font-size: 14px; }
+
+.tab-toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  background: var(--border);
+  position: relative;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.tab-toggle.on { background: var(--accent); }
+
+.tab-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.tab-toggle.on .tab-toggle-knob { transform: translateX(20px); }
